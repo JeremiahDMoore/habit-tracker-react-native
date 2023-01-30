@@ -4,6 +4,11 @@ import { VictoryLine, VictoryChart, VictoryAxis, VictoryLabel, VictoryScatter, V
 import { firebase } from '../config';
 
 // WE NEED TO MAKE THE GRAPH SHOW THE CUMULATIVE PROFIT
+// 1. we need to push the profit values into an array, and then add them up progressively:
+// arr = [420, 560, -145, -200, 1002, 1300, 45, -10] display arr[0], arr[0] + arr[1], arr[0] + arr[1] + arr[2], etc.
+
+
+
 
 const ProfitGraph = () => {
   const [data, setData] = useState([]);
