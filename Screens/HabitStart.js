@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
+import { View, TextInput, StyleSheet, Text, Button } from 'react-native';
 import { firebase } from '../config'
 import { useNavigation } from '@react-navigation/native';
+// import Button from '../assets/Button';
 
-const CashStart = () => {
+const HabitStart = () => {
   const navigation = useNavigation();
-  const [pokerRoom, setPokerRoom] = useState('');
-  const [stakes, setStakes] = useState('');
-  const [profit, setProfit] = useState('');
+  const [name, setName] = useState('');
+  const [progress, setProgress] = useState('');
+  const [target, setTarget] = useState('');
 
   const handleSubmit = () => {
-    firebase.firestore().collection('cashGameSessions').add({
-      pokerRoom,
-      stakes,
-      profit: Number(profit),
-      date: new Date(),      
+    firebase.firestore().collection('habits').add({
+      name,
+      progress,
+      startTime: new Date(),  
+      target: Number(target),
     });
-    navigation.navigate('Cash');
+    navigation.navigate('home');
+    console.log('Habit added');
   };
 
   return (
@@ -24,29 +26,29 @@ const CashStart = () => {
       <Text>Enter the poker room name</Text>
       <TextInput
         style={styles.input}
-        value={pokerRoom}
-        onChangeText={setPokerRoom}
+        value={name}
+        onChangeText={setName}
         placeholder="Enter the poker room name"
       />
       <Text>Enter the stakes</Text>
       <TextInput
         style={styles.input}
-        value={stakes}
-        onChangeText={setStakes}
+        value={progress}
+        onChangeText={setProgress}
         placeholder="Enter the stakes"
       />
       <Text>Enter the money in</Text>
       <TextInput
         style={styles.input}
-        value={profit}
+        value={target}
         type="number"
-        onChangeText={setProfit}
+        onChangeText={setTarget}
         placeholder="Enter the money in"
         
       />
       <Button
-        title="Submit"
-        onPress={handleSubmit}
+        title="Start Session"
+        onPress={handleSubmit}        
       />
     </View>
   );
@@ -68,4 +70,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CashStart;
+export default HabitStart;

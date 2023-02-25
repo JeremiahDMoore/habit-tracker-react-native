@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import TitleScreen from './Screens/TitleScreen';
 import CashScreen from './Screens/CashScreen';
 import TournamentScreen from './Screens/TournamentScreen';
-import CashStart from './Screens/CashStart';
+import HabitStart from './Screens/HabitStart';
 import { NavigationContainer } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -13,12 +13,11 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator ();
 const RootStack = createStackNavigator();
 
-
 function MainStackNavigator() {
   return (
     <Stack.Navigator  screenOptions={{ headerShown: false
     }}>
-      <Stack.Screen name="CashStart" component={CashStart} />
+      <Stack.Screen name="HabitStart" component={HabitStart} />
     </Stack.Navigator>
   );
 }

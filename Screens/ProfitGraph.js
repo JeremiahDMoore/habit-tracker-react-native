@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { VictoryLine, VictoryChart, VictoryAxis, VictoryLabel, VictoryScatter, VictoryArea } from 'victory-native';
 import { firebase } from '../config';
@@ -8,9 +7,8 @@ const ProfitGraph = () => {
   const [selectedData, setSelectedData] = useState(null);
 
   const handleDataSelect = (data) => {
-    setSelectedData(data);    
+    setSelectedData(data);  
   };
-
  
   useEffect(() => {
     const sessionsRef = firebase.firestore().collection('cashGameSessions').orderBy("date", "asc");
@@ -19,6 +17,8 @@ const ProfitGraph = () => {
       let cumulative = 0;
       
       querySnapshot.forEach((doc) => {
+        // if (doc.data().profit === null) return; // check if profit is null and return
+
         let date = doc.get('date');
                     //convert timestamp to MM/DD/YYYY format
         date = new Date(date.seconds * 1000);
@@ -41,12 +41,10 @@ const ProfitGraph = () => {
       });
       setCumulativeProfit(data);
     });
-
     return () => unsubscribe();
-  }, []);
+  }, []);  
   
-  return (
-    
+  return (    
    <VictoryChart 
       style={{
          parent: { maxWidth: '95%' },
@@ -128,8 +126,6 @@ const ProfitGraph = () => {
     </VictoryChart>
   );
 };
-
-
 
 export default ProfitGraph;
 

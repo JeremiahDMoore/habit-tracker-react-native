@@ -1,24 +1,27 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import ProfitGraph from './ProfitGraph';
-import Button from '../assets/Button';
+import { View, Text, Button } from 'react-native';
+import HabitTracker from './HabitTracker';
+import { useNavigation } from '@react-navigation/native';
+
+// import Button from '../assets/Button';
 
     const CashScreen = () => {
+        const navigation = useNavigation();
+
         return (
         
         <View style={{ flex: 1, alignItems: 'center', marginTop: 50 }}>
-            <Text style={{ fontSize: 32 }}>Cash Games</Text>
-            <ProfitGraph />
-            <Button 
+            <Text style={{ fontSize: 32 }}>Habits</Text>
+            <HabitTracker />
+            {/* <Button 
                 style={{ 
                     flex: 1, 
                     alignItems: 'center', 
                     marginTop: 0 
                 }}
-                onPress={() => console.log('Add Session')}
-                toScreen='Hidden'
-                text="Add Session"
-            >Add Session</Button>
+                onPress={navigation.navigate('Hidden')}
+                title="Add Session"
+            >Add Session</Button> */}
         </View>
         );
 }
